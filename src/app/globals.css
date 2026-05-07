@@ -1,0 +1,248 @@
+﻿@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: dark;
+  --rule: rgba(155, 116, 55, 0.38);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background: #090806;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  background:
+    radial-gradient(circle at 74% 10%, rgba(155, 116, 55, 0.14), transparent 32rem),
+    linear-gradient(135deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 14px),
+    #090806;
+  color: #eee4d2;
+  font-family: Arial, sans-serif;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(90deg, rgba(201, 155, 79, 0.035) 0 1px, transparent 1px 10%),
+    radial-gradient(circle at 50% 0, rgba(238, 228, 210, 0.035), transparent 34rem);
+  opacity: 0.7;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+::selection {
+  background: rgba(201, 155, 79, 0.28);
+}
+
+.stone-surface {
+  background:
+    linear-gradient(90deg, rgba(155, 116, 55, 0.09) 0 1px, transparent 1px 18%),
+    linear-gradient(135deg, rgba(25, 20, 15, 0.045) 0 1px, transparent 1px 18px),
+    radial-gradient(circle at 18% 8%, rgba(155, 116, 55, 0.16), transparent 28rem),
+    radial-gradient(circle at 84% 18%, rgba(255, 248, 230, 0.55), transparent 24rem),
+    #eee4d2;
+}
+
+.bronze-rule {
+  border-color: rgba(155, 116, 55, 0.38);
+}
+
+.command-depth {
+  background:
+    linear-gradient(90deg, rgba(9, 8, 6, 0.98), rgba(18, 16, 13, 0.93)),
+    linear-gradient(135deg, rgba(155, 116, 55, 0.07) 0 1px, transparent 1px 22px);
+}
+
+.architectural-panel {
+  position: relative;
+  min-height: 285px;
+  overflow: hidden;
+  border: 1px solid rgba(155, 116, 55, 0.38);
+  background:
+    linear-gradient(90deg, rgba(9, 8, 6, 0.92), rgba(9, 8, 6, 0.34) 42%, rgba(201, 155, 79, 0.08)),
+    radial-gradient(circle at 78% 35%, rgba(201, 155, 79, 0.2), transparent 18rem),
+    url("/images/gradiion-command-threshold.png") center / cover,
+    #090806;
+  box-shadow: 0 28px 80px rgba(0, 0, 0, 0.42);
+}
+
+.architectural-panel::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, rgba(9, 8, 6, 0.6), transparent 35%, rgba(9, 8, 6, 0.18)),
+    linear-gradient(180deg, rgba(9, 8, 6, 0.1), rgba(9, 8, 6, 0.52)),
+    repeating-linear-gradient(90deg, transparent 0 90px, rgba(238, 228, 210, 0.04) 90px 91px, transparent 91px 180px);
+}
+
+.architectural-panel::after {
+  content: "";
+  position: absolute;
+  inset: auto 0 0;
+  height: 44%;
+  background:
+    linear-gradient(160deg, transparent 0 45%, rgba(201, 155, 79, 0.2) 45.2% 45.6%, transparent 45.8%),
+    linear-gradient(20deg, transparent 0 52%, rgba(238, 228, 210, 0.1) 52.2% 52.6%, transparent 52.8%);
+  opacity: 0.9;
+}
+
+.architectural-panel-shade {
+  position: absolute;
+  inset: 24px;
+  border: 1px solid rgba(155, 116, 55, 0.2);
+  box-shadow: inset 0 0 80px rgba(9, 8, 6, 0.48);
+}
+
+.architectural-panel-label {
+  position: absolute;
+  left: 36px;
+  bottom: 34px;
+  max-width: 13rem;
+  color: rgba(238, 228, 210, 0.72);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.architectural-panel-access {
+  min-height: 300px;
+  background:
+    linear-gradient(90deg, rgba(9, 8, 6, 0.86), rgba(9, 8, 6, 0.28) 48%, rgba(9, 8, 6, 0.6)),
+    radial-gradient(circle at 55% 45%, rgba(201, 155, 79, 0.2), transparent 16rem),
+    url("/images/gradiion-access-hall.png") center / cover,
+    #090806;
+}
+
+.architectural-panel-record {
+  min-height: 190px;
+  background:
+    linear-gradient(90deg, rgba(9, 8, 6, 0.96), rgba(9, 8, 6, 0.66)),
+    repeating-linear-gradient(0deg, transparent 0 52px, rgba(155, 116, 55, 0.1) 52px 53px),
+    url("/images/gradiion-access-hall.png") center / cover,
+    #090806;
+}
+
+.lecture-window {
+  background:
+    linear-gradient(90deg, rgba(25, 20, 15, 0.42), rgba(25, 20, 15, 0.08) 45%, rgba(25, 20, 15, 0.28)),
+    url("/images/gradiion-lecture-window.png") center / cover,
+    #19140f;
+}
+
+@media (max-width: 640px) {
+  body {
+    overflow-x: hidden;
+    font-size: 13px;
+  }
+
+  .architectural-panel {
+    min-height: 135px;
+  }
+
+  .architectural-panel-access {
+    min-height: 140px;
+  }
+
+  .architectural-panel-record {
+    min-height: 115px;
+  }
+
+  .architectural-panel-shade {
+    inset: 12px;
+  }
+
+  .architectural-panel-label {
+    left: 16px;
+    right: 16px;
+    bottom: 14px;
+    font-size: 0.72rem;
+    line-height: 1.35;
+  }
+}
+
+
+
+@media (max-width: 640px) {
+  p {
+    max-width: 100%;
+    overflow-wrap: break-word;
+  }
+}
+
+
+@media (max-width: 640px) {
+  section, aside, div {
+    min-width: 0;
+  }
+}
+
+
+@media (max-width: 640px) {
+  p, h1 {
+    max-width: calc(100vw - 40px) !important;
+    overflow-wrap: anywhere;
+  }
+}
+
+
+@media (max-width: 640px) {
+  h1,
+  h2,
+  h3,
+  p,
+  a,
+  span {
+    max-width: 100%;
+    white-space: normal;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+}
+
+.ledger-surface {
+  background:
+    linear-gradient(90deg, rgba(155, 116, 55, 0.14) 0 1px, transparent 1px 16%),
+    linear-gradient(180deg, rgba(255, 248, 230, 0.34), rgba(234, 223, 203, 0.58)),
+    radial-gradient(circle at 18% 0, rgba(155, 116, 55, 0.18), transparent 22rem),
+    #eadfcb;
+}
+
+@media (max-width: 640px) {
+  .stone-surface,
+  .command-depth {
+    background-size: auto, auto, 220px 220px;
+  }
+
+  .student-lecture-flow p,
+  .student-lecture-flow label,
+  .student-lecture-flow legend {
+    max-width: calc(100vw - 64px);
+    overflow-wrap: anywhere;
+    word-break: break-word;
+  }
+
+  .student-lecture-flow .ledger-surface {
+    background:
+      linear-gradient(180deg, rgba(255, 248, 230, 0.24), rgba(234, 223, 203, 0.5)),
+      #eadfcb;
+  }
+
+  .architectural-panel-label {
+    font-size: 0.72rem;
+    line-height: 1.35;
+  }
+}
