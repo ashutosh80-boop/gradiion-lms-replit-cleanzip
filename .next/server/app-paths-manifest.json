@@ -1,7 +1,4 @@
 {
   "/page": "app/page.js",
-  "/student/page": "app/student/page.js",
-  "/student/module/module-1/page": "app/student/module/module-1/page.js",
-  "/student/submissions/page": "app/student/submissions/page.js",
-  "/student/lecture/lecture-2/page": "app/student/lecture/lecture-2/page.js"
+  "/student/page": "app/student/page.js"
 }
