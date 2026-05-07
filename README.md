@@ -33,10 +33,12 @@ npm install
 npm run dev
 ```
 
+The dev server is configured to bind to `0.0.0.0` on port `5000` so it works in both local and Replit environments.
+
 Then open:
 
 ```text
-http://localhost:3000/student
+http://localhost:5000/student
 ```
 
 ## Build
@@ -57,7 +59,7 @@ npm run start
 
 The project currently includes:
 
-- `npm run dev` - starts the Next.js development server.
+- `npm run dev` - starts the Next.js development server on `0.0.0.0:5000`.
 - `npm run build` - creates a production build.
 - `npm run start` - starts the production server after build.
 - `npm run lint` - runs Next linting.
@@ -195,9 +197,9 @@ Confirm:
 
 ## Replit Setup
 
-Use a Node.js Repl.
+Use a Node.js Repl (Node.js 20).
 
-1. Upload or import the full project folder.
+1. Import the repository into Replit (Create Repl → Import from GitHub).
 2. Open the Replit shell.
 3. Install dependencies:
 
@@ -205,23 +207,37 @@ Use a Node.js Repl.
 npm install
 ```
 
-4. Start the development server:
+4. Start the development server (this is the configured workflow run command):
 
 ```bash
-npm run dev -- --hostname 0.0.0.0
+npm run dev
 ```
 
-5. Open the Replit web preview and visit:
+This runs `next dev -p 5000 -H 0.0.0.0`, which is required for the Replit web preview proxy.
+
+5. The Replit web preview opens automatically on port `5000`. Visit:
 
 ```text
 /student
 ```
 
-If Replit asks for a run command, use:
+### Replit run command
+
+If Replit asks for a run command, use exactly:
 
 ```bash
-npm run dev -- --hostname 0.0.0.0
+npm run dev
 ```
+
+### Folder permission note
+
+If you import this project into Replit and the dev server crashes with `EACCES: permission denied` while scanning `src/app/student/...`, fix folder traversal permissions once with:
+
+```bash
+chmod -R u+rwX src
+```
+
+This is only needed after a fresh import where directory executable bits were stripped.
 
 ## Environment Variables
 

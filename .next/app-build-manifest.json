@@ -20,6 +20,16 @@
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
       "static/chunks/app/student/module/module-1/page.js"
+    ],
+    "/student/submissions/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/student/submissions/page.js"
+    ],
+    "/student/lecture/lecture-2/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/student/lecture/lecture-2/page.js"
     ]
   }
 }
