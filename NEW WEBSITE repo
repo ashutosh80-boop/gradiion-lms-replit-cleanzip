@@ -1,0 +1,284 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://gradiion.com/sitemap.xml
+
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url><loc>https://gradiion.com/</loc></url>
+  <url><loc>https://gradiion.com/standard/</loc></url>
+  <url><loc>https://gradiion.com/process/</loc></url>
+  <url><loc>https://gradiion.com/gate-0/</loc></url>
+  <url><loc>https://gradiion.com/application/</loc></url>
+  <url><loc>https://gradiion.com/application-submitted/</loc></url>
+  <url><loc>https://gradiion.com/access-not-continued/</loc></url>
+  <url><loc>https://gradiion.com/privacy/</loc></url>
+  <url><loc>https://gradiion.com/terms/</loc></url>
+</urlset>
+
+---
+const { href, label, event, variant = "light" } = Astro.props;
+const className = variant === "dark" ? "cta-button cta-button--dark" : "cta-button";
+---
+<a class={className} href={href} data-event={event}>{label}</a>
+
+<div class="mechanism-block" aria-label="Gradiion mechanism">
+  <span>Information explains.</span>
+  <span>Scrutiny reveals.</span>
+  <span>Correction builds.</span>
+  <span>Application proves.</span>
+</div>
+
+---
+const { eyebrow, title, body, cta, ctaHref, event, theme = "visual-bg", asset = "", compact = false } = Astro.props;
+---
+<section class:list={["page-hero", compact && "page-hero--compact", theme, asset]}>
+  <div class="section-inner section-inner--single">
+    <div class="section-copy">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h1>{title}</h1>
+      {body && <div class="body-stack" set:html={body} />}
+      {cta && ctaHref && (
+        <div class="cta-row">
+          <a class={theme === "ivory-surface" ? "cta-button cta-button--dark" : "cta-button"} href={ctaHref} data-event={event}>{cta}</a>
+        </div>
+      )}
+    </div>
+  </div>
+</section>
+
+---
+const {
+  title,
+  description,
+  canonical = Astro.url.href,
+  image = "/images/og/gradiion-og.webp"
+} = Astro.props;
+
+const absoluteImage = new URL(image, Astro.site ?? Astro.url).href;
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  name: "Gradiion",
+  url: "https://gradiion.com",
+  logo: new URL("/images/og/gradiion-og.webp", Astro.site ?? Astro.url).href,
+  description: "GRADIION is the system for human capability."
+};
+---
+<title>{title}</title>
+<meta name="description" content={description} />
+<link rel="canonical" href={canonical} />
+<meta property="og:type" content="website" />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={absoluteImage} />
+<meta property="og:url" content={canonical} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={absoluteImage} />
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />
+
+<footer class="site-footer">
+  <div class="site-footer__inner">
+    <a class="site-logo" href="/">GRADIION</a>
+    <nav class="footer-links" aria-label="Footer navigation">
+      <a href="/privacy/">Privacy</a>
+      <a href="/terms/">Terms</a>
+    </nav>
+    <p class="copyright">© 2026 Gradiion. All rights reserved.</p>
+  </div>
+</footer>
+
+---
+const nav = [
+  { href: "/standard/", label: "The Standard", event: "standard_click" },
+  { href: "/process/", label: "The Process", event: "process_click" },
+  { href: "/gate-0/", label: "Gate 0", event: "gate_0_view" }
+];
+---
+<header class="site-header" aria-label="Site header">
+  <div class="site-header__inner">
+    <a class="site-logo" href="/" aria-label="Gradiion home">GRADIION</a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      {nav.map((item) => <a href={item.href} data-event={item.event}>{item.label}</a>)}
+    </nav>
+    <details class="mobile-nav">
+      <summary>Menu</summary>
+      <nav class="mobile-nav__panel" aria-label="Mobile navigation">
+        {nav.map((item) => <a href={item.href} data-event={item.event}>{item.label}</a>)}
+      </nav>
+    </details>
+  </div>
+</header>
+
+---
+const { title, theme = "ivory-surface", cta, ctaHref, event } = Astro.props;
+---
+<section class:list={["section-split", theme]}>
+  <div class="section-inner">
+    <div class="section-copy">
+      <h2>{title}</h2>
+      <div class="body-stack"><slot /></div>
+      {cta && ctaHref && (
+        <div class="cta-row">
+          <a class={theme === "ivory-surface" ? "cta-button cta-button--dark" : "cta-button"} href={ctaHref} data-event={event}>{cta}</a>
+        </div>
+      )}
+    </div>
+    <slot name="side" />
+  </div>
+</section>
+
+---
+const { title, asset = "", theme = "visual-bg", cta, ctaHref, event, sideMicro } = Astro.props;
+---
+<section class:list={["section-full", "section-doctrine", theme, asset]}>
+  <div class="section-inner">
+    <div class="section-copy">
+      <h2>{title}</h2>
+      <div class="body-stack"><slot /></div>
+      {cta && ctaHref && (
+        <div class="cta-row">
+          <a class={theme === "ivory-surface" ? "cta-button cta-button--dark" : "cta-button"} href={ctaHref} data-event={event}>{cta}</a>
+        </div>
+      )}
+    </div>
+    {sideMicro && <aside class="side-micro">{sideMicro}</aside>}
+    <slot name="side" />
+  </div>
+</section>
+
+---
+import "../styles/global.css";
+import Seo from "../components/Seo.astro";
+import SiteHeader from "../components/SiteHeader.astro";
+import SiteFooter from "../components/SiteFooter.astro";
+
+const { title, description, bodyClass = "theme-home", canonical, image } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="generator" content={Astro.generator} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600&family=Cormorant+Garamond:wght@500;600&family=Inter:wght@400;500;700&display=swap" rel="stylesheet" />
+    <Seo title={title} description={description} canonical={canonical} image={image} />
+    <script is:inline>
+      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({"gtm.start":new Date().getTime(),event:"gtm.js"});var f=d.getElementsByTagName(s)[0],j=d.createElement(s),dl=l!="dataLayer"?"&l="+l:"";j.async=true;j.src="https://www.googletagmanager.com/gtm.js?id="+i+dl;f.parentNode.insertBefore(j,f);})(window,document,"script","dataLayer","GTM-MTGH2FWF");
+    </script>
+  </head>
+  <body class={bodyClass}>
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-MTGH2FWF" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <SiteHeader />
+    <main>
+      <slot />
+    </main>
+    <SiteFooter />
+  </body>
+</html>
+
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const description = "Your profile does not currently meet the access standard for Gradiion. Access will not continue at this stage.";
+---
+<BaseLayout title="Access Not Continued | Gradiion" description={description} bodyClass="theme-gate">
+  <section class="page-hero page-hero--compact gate-surface">
+    <div class="section-inner section-inner--single">
+      <div class="section-copy">
+        <h1>Application reviewed.</h1>
+        <p>Your profile does not currently meet the access standard for Gradiion.</p>
+        <p>Access will not continue at this stage.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const description = "Your Gradiion application has been received. If your profile is aligned, next steps will be sent.";
+---
+<BaseLayout title="Application Received | Gradiion" description={description} bodyClass="theme-gate">
+  <section class="page-hero page-hero--compact gate-surface">
+    <div class="section-inner section-inner--single">
+      <div class="section-copy">
+        <h1>Application received.</h1>
+        <p>If your profile is aligned, next steps will be sent.</p>
+        <p>No further action is required at this stage.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
+
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const description = "This application is for professionals prepared to be assessed on how they operate when responsibility, scrutiny, and consequence increase.";
+const fields = ["Name", "Email", "Phone", "Country", "Professional role", "Why now?", "Where does your capability weaken when conditions intensify?", "What behavior are you prepared to examine directly?", "What do you usually rely on when your clarity or execution drops?", "Are you prepared to be assessed, corrected, and required to apply?"];
+---
+<BaseLayout title="Gate 1 Application | Gradiion" description={description} bodyClass="theme-gate">
+  <section class="page-hero gate-surface asset-application">
+    <div class="section-inner">
+      <div class="section-copy">
+        <p class="eyebrow">Gate 1</p>
+        <h1>Gate 1 Application</h1>
+        <div class="body-stack">
+          <p>This application is not for general interest.</p>
+          <p>Answer only if you are prepared to be assessed on how you operate when responsibility, scrutiny, and consequence increase.</p>
+          <p>This process is designed to identify whether Gradiion is the right next step.</p>
+          <p>Not every applicant proceeds.</p>
+          <p>Do not answer to impress.</p>
+          <p>Answer to expose your current operating standard.</p>
+        </div>
+      </div>
+      <section class="form-panel" aria-label="Application form placeholder">
+        <p class="eyebrow">FORM EMBED PLACEHOLDER</p>
+        <p>Replace with final Fillout or HubSpot embed.</p>
+        <div class="form-grid">
+          {fields.map((field, index) => <div class:list={["field-placeholder", index > 4 && "field-placeholder--wide"]}>{field}</div>)}
+        </div>
+        <div class="cta-row">
+          <a class="cta-button" href="/application-submitted/" data-event="application_submit">Submit Application</a>
+        </div>
+      </section>
+    </div>
+  </section>
+</BaseLayout>
+
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const description = "Gate 0 is the first access point into Gradiion. Complete the orientation before application access.";
+---
+<BaseLayout title="Gate 0 | Gradiion Orientation" description={description} bodyClass="theme-gate">
+  <section class="page-hero gate-surface asset-gate-hero">
+    <div class="section-inner">
+      <div class="section-copy">
+        <p class="eyebrow">Gate 0 Orientation</p>
+        <h1>If the gap is familiar, start here.</h1>
+        <div class="body-stack">
+          <p>Gradiion is not open access.</p>
+          <p>Before you can apply, complete this short orientation.</p>
+          <p>It explains what Gradiion trains, who it is built for, and who should not continue.</p>
+          <p>This orientation is for professionals who recognize that capability must hold when responsibility, scrutiny, and consequence increase.</p>
+          <p>It is not for people looking for motivation, passive content, or another credential.</p>
+        </div>
+      </div>
+      <aside class="video-card">
+        <p class="eyebrow">Gate 0 Orientation</p>
+        <h2>Required Before Application Access</h2>
+        <div class="video-placeholder">Orientation video placeholder.<br />Replace with final embed.</div>
+        <div class="cta-row">
+          <a class="cta-button" href="/application/" data-event="application_start">Unlock Application</a>
+        </div>
+        <p class="muted">Complete the orientation to unlock the application form.</p>
+        <p class="muted">Available after orientation is complete.</p>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>
