@@ -1,27 +1,34 @@
-{
-  "name": "gradiion-student-environment",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev -p 5000 -H 0.0.0.0",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "next": "^15.0.0",
-    "react": "^19.0.0",
-    "react-dom": "^19.0.0"
-  },
-  "devDependencies": {
-    "@types/node": "^22.0.0",
-    "@types/react": "^19.0.0",
-    "@types/react-dom": "^19.0.0",
-    "autoprefixer": "^10.4.20",
-    "eslint": "^9.0.0",
-    "eslint-config-next": "^15.0.0",
-    "postcss": "^8.4.49",
-    "tailwindcss": "^3.4.17",
-    "typescript": "^5.6.0"
-  }
-}
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const description = "This application is for professionals prepared to be assessed on how they operate when responsibility, scrutiny, and consequence increase.";
+const fields = ["Name", "Email", "Phone", "Country", "Professional role", "Why now?", "Where does your capability weaken when conditions intensify?", "What behavior are you prepared to examine directly?", "What do you usually rely on when your clarity or execution drops?", "Are you prepared to be assessed, corrected, and required to apply?"];
+---
+<BaseLayout title="Gate 1 Application | Gradiion" description={description} bodyClass="theme-gate">
+  <section class="page-hero gate-surface asset-application">
+    <div class="section-inner">
+      <div class="section-copy">
+        <p class="eyebrow">Gate 1</p>
+        <h1>Gate 1 Application</h1>
+        <div class="body-stack">
+          <p>This application is not for general interest.</p>
+          <p>Answer only if you are prepared to be assessed on how you operate when responsibility, scrutiny, and consequence increase.</p>
+          <p>This process is designed to identify whether Gradiion is the right next step.</p>
+          <p>Not every applicant proceeds.</p>
+          <p>Do not answer to impress.</p>
+          <p>Answer to expose your current operating standard.</p>
+        </div>
+      </div>
+      <section class="form-panel" aria-label="Application form placeholder">
+        <p class="eyebrow">FORM EMBED PLACEHOLDER</p>
+        <p>Replace with final Fillout or HubSpot embed.</p>
+        <div class="form-grid">
+          {fields.map((field, index) => <div class:list={["field-placeholder", index > 4 && "field-placeholder--wide"]}>{field}</div>)}
+        </div>
+        <div class="cta-row">
+          <a class="cta-button" href="/application-submitted/" data-event="application_submit">Submit Application</a>
+        </div>
+      </section>
+    </div>
+  </section>
+</BaseLayout>

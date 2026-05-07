@@ -1,0 +1,21 @@
+---
+const nav = [
+  { href: "/standard/", label: "The Standard", event: "standard_click" },
+  { href: "/process/", label: "The Process", event: "process_click" },
+  { href: "/gate-0/", label: "Gate 0", event: "gate_0_view" }
+];
+---
+<header class="site-header" aria-label="Site header">
+  <div class="site-header__inner">
+    <a class="site-logo" href="/" aria-label="Gradiion home">GRADIION</a>
+    <nav class="site-nav" aria-label="Primary navigation">
+      {nav.map((item) => <a href={item.href} data-event={item.event}>{item.label}</a>)}
+    </nav>
+    <details class="mobile-nav">
+      <summary>Menu</summary>
+      <nav class="mobile-nav__panel" aria-label="Mobile navigation">
+        {nav.map((item) => <a href={item.href} data-event={item.event}>{item.label}</a>)}
+      </nav>
+    </details>
+  </div>
+</header>

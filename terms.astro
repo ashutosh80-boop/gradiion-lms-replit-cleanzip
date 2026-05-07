@@ -1,0 +1,18 @@
+---
+const { title, asset = "", theme = "visual-bg", cta, ctaHref, event, sideMicro } = Astro.props;
+---
+<section class:list={["section-full", "section-doctrine", theme, asset]}>
+  <div class="section-inner">
+    <div class="section-copy">
+      <h2>{title}</h2>
+      <div class="body-stack"><slot /></div>
+      {cta && ctaHref && (
+        <div class="cta-row">
+          <a class={theme === "ivory-surface" ? "cta-button cta-button--dark" : "cta-button"} href={ctaHref} data-event={event}>{cta}</a>
+        </div>
+      )}
+    </div>
+    {sideMicro && <aside class="side-micro">{sideMicro}</aside>}
+    <slot name="side" />
+  </div>
+</section>

@@ -1,0 +1,16 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const description = "Your profile does not currently meet the access standard for Gradiion. Access will not continue at this stage.";
+---
+<BaseLayout title="Access Not Continued | Gradiion" description={description} bodyClass="theme-gate">
+  <section class="page-hero page-hero--compact gate-surface">
+    <div class="section-inner section-inner--single">
+      <div class="section-copy">
+        <h1>Application reviewed.</h1>
+        <p>Your profile does not currently meet the access standard for Gradiion.</p>
+        <p>Access will not continue at this stage.</p>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

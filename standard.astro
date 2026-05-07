@@ -1,0 +1,17 @@
+---
+const { title, theme = "ivory-surface", cta, ctaHref, event } = Astro.props;
+---
+<section class:list={["section-split", theme]}>
+  <div class="section-inner">
+    <div class="section-copy">
+      <h2>{title}</h2>
+      <div class="body-stack"><slot /></div>
+      {cta && ctaHref && (
+        <div class="cta-row">
+          <a class={theme === "ivory-surface" ? "cta-button cta-button--dark" : "cta-button"} href={ctaHref} data-event={event}>{cta}</a>
+        </div>
+      )}
+    </div>
+    <slot name="side" />
+  </div>
+</section>

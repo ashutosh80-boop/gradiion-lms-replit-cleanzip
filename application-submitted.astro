@@ -1,0 +1,5 @@
+---
+const { href, label, event, variant = "light" } = Astro.props;
+const className = variant === "dark" ? "cta-button cta-button--dark" : "cta-button";
+---
+<a class={className} href={href} data-event={event}>{label}</a>

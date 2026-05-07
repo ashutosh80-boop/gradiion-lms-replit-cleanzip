@@ -1,0 +1,17 @@
+---
+const { eyebrow, title, body, cta, ctaHref, event, theme = "visual-bg", asset = "", compact = false } = Astro.props;
+---
+<section class:list={["page-hero", compact && "page-hero--compact", theme, asset]}>
+  <div class="section-inner section-inner--single">
+    <div class="section-copy">
+      {eyebrow && <p class="eyebrow">{eyebrow}</p>}
+      <h1>{title}</h1>
+      {body && <div class="body-stack" set:html={body} />}
+      {cta && ctaHref && (
+        <div class="cta-row">
+          <a class={theme === "ivory-surface" ? "cta-button cta-button--dark" : "cta-button"} href={ctaHref} data-event={event}>{cta}</a>
+        </div>
+      )}
+    </div>
+  </div>
+</section>
